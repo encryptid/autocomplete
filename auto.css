@@ -1,0 +1,18 @@
+html {
+    background-color: lightseagreen;
+}
+
+body {
+    margin: auto;
+    text-align: center;
+}
+input {
+    width: 65%;
+    border-radius: 5px;
+}
+
+ul {
+    margin: auto;
+    width: 58%;
+    background-color: white;
+}
