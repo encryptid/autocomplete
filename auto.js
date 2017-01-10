@@ -59,45 +59,45 @@
 
 window.addEventListener('load', function () {
 
-let search = document.querySelector('.search');
-console.log(search);
-//
+    let search = document.querySelector('.search');
+    console.log(search);
+    //
 
-let request = new XMLHttpRequest();
-request.open('GET', 'http://api.queencityiron.com/autocomplete');
-request.addEventListener('load', function() {
-    response = JSON.parse(request.responseText);
-    console.log(response);
+    let request = new XMLHttpRequest();
+    request.open('GET', 'http://api.queencityiron.com/autocomplete');
+    request.addEventListener('load', function () {
+        response = JSON.parse(request.responseText);
+        console.log(response);
         //let grandparent = document.querySelector('.box');
         let parent = document.querySelector('.list');
         //grandparent.appendChild(parent);
-    search.addEventListener('keyup', function() {
-        let text = search.value;
-        console.log(text);
-        //console.log('eventListener is working!');
-        let cityList = response;
-        for (let i = 0; i < response.length; i++) {
-            // let item = response[i].indexOf(text);
-            console.log(text + ' on line 80');
-            if (response[i].includes(text) === true) { // if array 
-                cityList = [];
-                cityList.push(response[i]);
-                let child = document.createElement('li');
-                child.textContent = response[i];
-                parent.appendChild(child);
-                console.log(cityList + ' is the current tally');
-             } // else {
-            //     console.log(child);
-            //      parent.removeChild(child);
-            //  }
+        search.addEventListener('keyup', function () {
+            let text = search.value;
+            parent.innerHTML = "";
+            // if (text === "") {
+            //     parent.innerHTML = ""
+            // };
+            console.log(text);
+            //console.log('eventListener is working!');
+            let cityList = response;
+            if (text !== "") {
+                for (let i = 0; i < response.length; i++) {
+                    // let item = response[i].indexOf(text);
+                    console.log(text + ' on line 80');
+                    if (response[i].includes(text) === true) { // if array 
+                        cityList = [];
+                        cityList.push(response[i]);
+                        let child = document.createElement('li');
+                        child.textContent = response[i];
+                        parent.appendChild(child);
+                        console.log(cityList + ' is the current tally');
+                    } 
+                }
 
-            
-        }
-    })
-});
-request.send();
-
-//showList();
+            }
+        })
+    });
+    request.send();
 
 });
 
